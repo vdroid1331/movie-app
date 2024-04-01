@@ -17,5 +17,12 @@ With this app you can get information about the upcoming and popular Movies.
 
 ## Video Overview
 
+[![App Overview](https://img.youtube.com/vi/NAeEUBhhjpg/0.jpg)](https://www.youtube.com/watch?v=NAeEUBhhjpg)
+
 
 ## Screenshots
+![1](https://github.com/vdroid1331/movie-app/assets/65962958/aa30f738-e8a7-4e44-b12f-e2b7df0a8555)
+
+![2](https://github.com/vdroid1331/movie-app/assets/65962958/888a43d0-94df-4b7b-a4a4-5ed947105d32)
+
+![3](https://github.com/vdroid1331/movie-app/assets/65962958/5d21aa8e-34b2-4de2-a6c6-4305f9ae98fa)
