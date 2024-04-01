@@ -18,8 +18,15 @@ data class MovieEntity (
     val video: Boolean,
     val vote_average: Double,
     val vote_count: Int,
-
-    @PrimaryKey
-    val id: Int,
+    var runtime: Int,
+    var videos: String,
+    val first_air_date: String,
+    var status: String,
+    var media_type: String,
+    val origin_country: String,
+    var tagline: String,
+    var similar_media_list: String,
+    val original_name: String,
+    @PrimaryKey val id: Int,
     val category: String
 )

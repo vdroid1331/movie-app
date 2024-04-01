@@ -2,6 +2,7 @@ package com.vinayakgupta3112.movieapp.di
 
 import android.app.Application
 import androidx.room.Room
+import com.vinayakgupta3112.movieapp.movieList.data.local.movie.MIGRATION_1_2
 import com.vinayakgupta3112.movieapp.movieList.data.local.movie.MovieDatabase
 import com.vinayakgupta3112.movieapp.movieList.data.remote.MovieApi
 import dagger.Module
@@ -44,7 +45,7 @@ object AppModule {
             app,
             MovieDatabase::class.java,
             "movie.db"
-        ).build()
+        ).addMigrations(MIGRATION_1_2).build()
     }
 
 

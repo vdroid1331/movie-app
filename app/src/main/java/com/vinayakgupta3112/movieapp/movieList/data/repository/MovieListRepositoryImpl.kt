@@ -29,7 +29,7 @@ class MovieListRepositoryImpl @Inject constructor(
             if (shouldLoadLocalMovie) {
                 emit(Resource.Success(
                     data = localMovieList.map { movieEntity ->
-                        movieEntity.toMovie(category)
+                        movieEntity.toMovie(category = category)
                     }
                 ))
                 emit(Resource.Loading(false))
@@ -56,13 +56,13 @@ class MovieListRepositoryImpl @Inject constructor(
 
             val movieEntities = movieListFromApi.results.let {
                 it.map { movieDto ->
-                    movieDto.toMovieEntity(category)
+                    movieDto.toMovieEntity(category = category)
                 }
             }
             movieDatabase.movieDao.upsertMovieList(movieEntities)
             emit(Resource.Success(
                 movieEntities.map {
-                    it.toMovie(category)
+                    it.toMovie(category = category)
                 }
             ))
             emit(Resource.Loading(false))
@@ -75,7 +75,7 @@ class MovieListRepositoryImpl @Inject constructor(
             val movieEntity = movieDatabase.movieDao.getMovieById(id)
             if (movieEntity != null) {
                 emit(
-                    Resource.Success(movieEntity.toMovie(movieEntity.category))
+                    Resource.Success(movieEntity.toMovie(category =  movieEntity.category))
                 )
                 emit(Resource.Loading(false))
                 return@flow
