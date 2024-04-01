@@ -84,4 +84,38 @@ class MovieListRepositoryImpl @Inject constructor(
             emit(Resource.Loading(false))
         }
     }
+
+    override suspend fun updateItem(media: Movie) {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun insertItem(media: Movie) {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getItem(id: Int, type: String, category: String): Movie {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getMoviesAndTvSeriesList(
+        fetchFromRemote: Boolean,
+        isRefresh: Boolean,
+        type: String,
+        category: String,
+        page: Int,
+        apiKey: String
+    ): Flow<Resource<List<Movie>>> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getTrendingList(
+        fetchFromRemote: Boolean,
+        isRefresh: Boolean,
+        type: String,
+        time: String,
+        page: Int,
+        apiKey: String
+    ): Flow<Resource<List<Movie>>> {
+        TODO("Not yet implemented")
+    }
 }

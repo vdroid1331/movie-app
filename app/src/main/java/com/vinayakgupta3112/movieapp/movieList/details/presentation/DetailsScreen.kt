@@ -186,7 +186,7 @@ fun DetailsScreen() {
 
                     Text(
                         modifier = Modifier.padding(start = 16.dp),
-                        text = movie.release_date + stringResource(R.string.votes)
+                        text = movie.vote_count.toString() + stringResource(R.string.votes)
                     )
                 }
             }
