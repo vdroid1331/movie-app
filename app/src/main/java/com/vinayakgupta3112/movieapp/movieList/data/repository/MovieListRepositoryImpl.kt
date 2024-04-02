@@ -6,6 +6,8 @@ import com.vinayakgupta3112.movieapp.movieList.data.mappers.toMovieEntity
 import com.vinayakgupta3112.movieapp.movieList.data.remote.MovieApi
 import com.vinayakgupta3112.movieapp.movieList.domain.model.Movie
 import com.vinayakgupta3112.movieapp.movieList.domain.repository.MovieListRepository
+import com.vinayakgupta3112.movieapp.movieList.util.Constants
+import com.vinayakgupta3112.movieapp.movieList.util.Constants.TRENDING
 import com.vinayakgupta3112.movieapp.movieList.util.Resource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -17,6 +19,8 @@ class MovieListRepositoryImpl @Inject constructor(
     private val movieApi: MovieApi,
     private val movieDatabase: MovieDatabase
 ) : MovieListRepository {
+
+    private val movieDao = movieDatabase.movieDao
     override suspend fun getMovieList(
         forceFetchFromRemote: Boolean,
         category: String,
@@ -85,16 +89,25 @@ class MovieListRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun updateItem(media: Movie) {
-        TODO("Not yet implemented")
+    override suspend fun updateItem(movie: Movie) {
+        val movieEntity = movie.toMovieEntity()
+        movieDao.updateMediaItem(
+            mediaItem = movieEntity
+        )
     }
 
-    override suspend fun insertItem(media: Movie) {
-        TODO("Not yet implemented")
+    override suspend fun insertItem(movie: Movie) {
+        val movieEntity = movie.toMovieEntity()
+        movieDao.insertMediaItem(
+            mediaItem = movieEntity
+        )
     }
 
     override suspend fun getItem(id: Int, type: String, category: String): Movie {
-        TODO("Not yet implemented")
+        return movieDao.getMovieById(id = id).toMovie(
+            category = category,
+            type = type
+        )
     }
 
     override suspend fun getMoviesAndTvSeriesList(
@@ -105,8 +118,76 @@ class MovieListRepositoryImpl @Inject constructor(
         page: Int,
         apiKey: String
     ): Flow<Resource<List<Movie>>> {
-        TODO("Not yet implemented")
+        return flow {
+
+            emit(Resource.Loading(true))
+
+            val localMediaList = movieDao.getMediaListByTypeAndCategory(type, category)
+
+            val shouldJustLoadFromCache =
+                localMediaList.isNotEmpty() && !fetchFromRemote && !isRefresh
+            if (shouldJustLoadFromCache) {
+
+                emit(Resource.Success(
+                    data = localMediaList.map {
+                        it.toMovie(
+                            type = type,
+                            category = category
+                        )
+                    }
+                ))
+
+                emit(Resource.Loading(false))
+                return@flow
+            }
+
+            var searchPage = page
+            if (isRefresh) {
+                movieDao.deleteMediaByTypeAndCategory(type, category)
+                searchPage = 1
+            }
+
+            val remoteMediaList = try {
+                movieApi.getMoviesAndTvSeriesList(
+                    type, category, searchPage, apiKey
+                ).results
+            } catch (e: java.io.IOException) {
+                e.printStackTrace()
+                emit(Resource.Error("Couldn't load data"))
+                emit(Resource.Loading(false))
+                return@flow
+            } catch (e: HttpException) {
+                e.printStackTrace()
+                emit(Resource.Error("Couldn't load data"))
+                emit(Resource.Loading(false))
+                return@flow
+            }
+
+            remoteMediaList.let { mediaList ->
+                val media = mediaList.map {
+                    it.toMovie(
+                        type = type,
+                        category = category
+                    )
+                }
+
+                val entities = mediaList.map {
+                    it.toMovieEntity(
+                        type = type,
+                        category = category,
+                    )
+                }
+
+                movieDao.insertMediaList(entities)
+
+                emit(
+                    Resource.Success(data = media)
+                )
+                emit(Resource.Loading(false))
+            }
+        }
     }
+
 
     override suspend fun getTrendingList(
         fetchFromRemote: Boolean,
@@ -116,6 +197,74 @@ class MovieListRepositoryImpl @Inject constructor(
         page: Int,
         apiKey: String
     ): Flow<Resource<List<Movie>>> {
-        TODO("Not yet implemented")
+        return flow {
+
+            emit(Resource.Loading(true))
+
+            val localMediaList = movieDao.getTrendingMediaList(TRENDING)
+
+            val shouldJustLoadFromCache = localMediaList.isNotEmpty() && !fetchFromRemote
+            if (shouldJustLoadFromCache) {
+
+                emit(Resource.Success(
+                    data = localMediaList.map {
+                        it.toMovie(
+                            type = it.media_type ?: Constants.unavailable,
+                            category = TRENDING
+                        )
+                    }
+                ))
+
+                emit(Resource.Loading(false))
+                return@flow
+            }
+
+            var searchPage = page
+
+            if (isRefresh) {
+                movieDao.deleteTrendingMediaList(TRENDING)
+                searchPage = 1
+            }
+
+            val remoteMediaList = try {
+                movieApi.getTrendingList(
+                    type, time, searchPage, apiKey
+                ).results
+            } catch (e: java.io.IOException) {
+                e.printStackTrace()
+                emit(Resource.Error("Couldn't load data"))
+                emit(Resource.Loading(false))
+                return@flow
+            } catch (e: HttpException) {
+                e.printStackTrace()
+                emit(Resource.Error("Couldn't load data"))
+                emit(Resource.Loading(false))
+                return@flow
+            }
+
+            remoteMediaList.let { mediaList ->
+
+                val media = mediaList.map {
+                    it.toMovie(
+                        type = it.media_type ?: Constants.unavailable,
+                        category = TRENDING
+                    )
+                }
+
+                val entities = mediaList.map {
+                    it.toMovieEntity(
+                        type = it.media_type ?: Constants.unavailable,
+                        category = TRENDING
+                    )
+                }
+
+                movieDao.insertMediaList(entities)
+
+                emit(
+                    Resource.Success(data = media)
+                )
+                emit(Resource.Loading(false))
+            }
+        }
     }
 }
