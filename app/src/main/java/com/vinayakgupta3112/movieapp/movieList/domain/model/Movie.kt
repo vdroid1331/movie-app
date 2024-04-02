@@ -21,7 +21,7 @@ class Movie (
     var videos: List<String>?,
     val first_air_date: String,
     var status: String?,
-    var tagline: String,
+    var tagline: String?,
     var similar_media_list: List<Int>,
     val original_name: String,
     val category: String
