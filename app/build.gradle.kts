@@ -98,6 +98,8 @@ dependencies {
     implementation(libs.logging.interceptor)
     implementation(libs.androidx.material.icons.extended)
     implementation(libs.accompanist.systemuicontroller)
+    implementation(libs.androidx.core.splashscreen)
+    implementation(libs.chromecast.sender)
     ksp(libs.hilt.compiler)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.coil.compose)
