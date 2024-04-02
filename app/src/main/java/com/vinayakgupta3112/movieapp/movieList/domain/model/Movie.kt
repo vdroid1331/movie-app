@@ -1,6 +1,10 @@
 package com.vinayakgupta3112.movieapp.movieList.domain.model
 
-class Movie (
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
+data class Movie (
     val adult: Boolean,
     val backdrop_path: String,
     val genre_ids: List<Int>,
@@ -25,4 +29,4 @@ class Movie (
     var similar_media_list: List<Int>,
     val original_name: String,
     val category: String
-)
+): Parcelable

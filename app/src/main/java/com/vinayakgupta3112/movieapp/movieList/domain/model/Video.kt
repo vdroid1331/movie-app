@@ -1,6 +1,10 @@
 package com.vinayakgupta3112.movieapp.movieList.domain.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
+
+@Parcelize
 data class Video(
     val id: String,
     val iso_3166_1: String,
@@ -12,4 +16,4 @@ data class Video(
     val site: String,
     val size: Int,
     val type: String
-)
+): Parcelable
