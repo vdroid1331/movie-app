@@ -1,8 +1,10 @@
-# The Movies App
+![4](https://github.com/vdroid1331/movie-app/assets/65962958/cc38cd40-b80d-44d9-8bfa-482af2f2860c)# The Movies App
 The Movies App, is a dynamic application designed with cutting-edge technologies, including Jetpack Compose and Kotlin. This project follows to clean code principles, thanks to the clarity and maintainability they bring. The application is built with the Model-View-ViewModel (MVVM) design pattern, which promotes a stable and scalable codebase. Additionally, Dagger Hilt is used for efficient dependency injection, which improves modularity and testability.
 
 ### About The App
-With this app you can get information about the upcoming and popular Movies.
+With this app you can get information about movies and TV series, watch trailer, search and find the latest, most popular and top rated movies and TV series.
+
+Note: Due to the API Unstability, sometimes some content comes up as empty or is unavailable, also you can watch the trailer from the movie details screen but it just redirects you to the Youtube link for the trailer, if available.
 
 ## Key Features
 - Jetpack Compose: The app leverages Jetpack Compose, a modern Android UI toolkit, to create a seamless and interactive user experience.
@@ -17,12 +19,18 @@ With this app you can get information about the upcoming and popular Movies.
 
 ## Video Overview
 
-[![App Overview](https://img.youtube.com/vi/NAeEUBhhjpg/0.jpg)](https://www.youtube.com/watch?v=NAeEUBhhjpg)
+[![App Overview](https://img.youtube.com/vi/JnPi6Y4IkZ8/0.jpg)](https://www.youtube.com/watch?v=JnPi6Y4IkZ8)
 
 
 ## Screenshots
-![1](https://github.com/vdroid1331/movie-app/assets/65962958/aa30f738-e8a7-4e44-b12f-e2b7df0a8555)
 
-![2](https://github.com/vdroid1331/movie-app/assets/65962958/888a43d0-94df-4b7b-a4a4-5ed947105d32)
 
-![3](https://github.com/vdroid1331/movie-app/assets/65962958/5d21aa8e-34b2-4de2-a6c6-4305f9ae98fa)
+![4](https://github.com/vdroid1331/movie-app/assets/65962958/8d16b802-1b79-4a09-ae93-6cc52b9ea882)
+
+![5](https://github.com/vdroid1331/movie-app/assets/65962958/cb46d09f-aa21-43f7-8569-8b8bedee1d7f)
+
+![6](https://github.com/vdroid1331/movie-app/assets/65962958/66ac4557-73bc-47df-b144-c410be29f7db)
+
+![7](https://github.com/vdroid1331/movie-app/assets/65962958/c2ec24f3-899e-446b-b609-e771717d352b)
+
+
