@@ -1,4 +1,4 @@
-package com.vinayakgupta3112.movieapp.movieList.util.components
+package com.vinayakgupta3112.movieapp.movieList.details.presentation
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -45,28 +45,27 @@ import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import coil.size.Size
 import com.vinayakgupta3112.movieapp.R
-import com.vinayakgupta3112.movieapp.movieList.data.remote.MovieApi.Companion.IMAGE_BASE_URL
+import com.vinayakgupta3112.movieapp.movieList.data.remote.MovieApi
 import com.vinayakgupta3112.movieapp.movieList.domain.model.Movie
-import com.vinayakgupta3112.movieapp.movieList.presentation.MainUiState
-import com.vinayakgupta3112.movieapp.movieList.presentation.MainUiEvents
 import com.vinayakgupta3112.movieapp.movieList.util.Constants
-import com.vinayakgupta3112.movieapp.movieList.util.RatingBar
 import com.vinayakgupta3112.movieapp.movieList.util.Route
+import com.vinayakgupta3112.movieapp.movieList.util.components.RatingBar
+import com.vinayakgupta3112.movieapp.movieList.util.components.genresProvider
 import com.vinayakgupta3112.movieapp.movieList.util.getAverageColor
 import com.vinayakgupta3112.movieapp.ui.theme.Radius
 import com.vinayakgupta3112.movieapp.ui.theme.RadiusContainer
 import com.vinayakgupta3112.movieapp.ui.theme.font
 
+
 @Composable
-fun MediaItem(
+fun SimilarMediaItem(
     media: Movie,
     navController: NavController,
-    mainUiState: MainUiState,
-    modifier: Modifier = Modifier,
-    onEvent: (MainUiEvents) -> Unit
+    mediaDetailsScreenState: MediaDetailsScreenState,
+    modifier: Modifier = Modifier
 ) {
 
-    val imageUrl = "${IMAGE_BASE_URL}${media.poster_path}"
+    val imageUrl = "${MovieApi.IMAGE_BASE_URL}${media.poster_path}"
 
     val title = media.title
 
@@ -193,8 +192,8 @@ fun MediaItem(
             val genres = genresProvider(
                 genre_ids = media.genre_ids,
                 allGenres = if (media.media_type == Constants.MOVIE)
-                    mainUiState.moviesGenresList
-                else mainUiState.tvGenresList
+                    mediaDetailsScreenState.moviesGenresList
+                else mediaDetailsScreenState.tvGenresList
             )
 
             Text(
@@ -259,3 +258,4 @@ fun MediaItem(
         }
     }
 }
+

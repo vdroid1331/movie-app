@@ -18,7 +18,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.vinayakgupta3112.movieapp.R
 import com.vinayakgupta3112.movieapp.movieList.domain.model.Movie
-import com.vinayakgupta3112.movieapp.movieList.presentation.components.MainUiEvents
+import com.vinayakgupta3112.movieapp.movieList.presentation.MainUiEvents
 
 
 @Composable

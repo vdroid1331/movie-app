@@ -1,4 +1,4 @@
-package com.vinayakgupta3112.movieapp.movieList.presentation
+package com.vinayakgupta3112.movieapp.movieList.details.presentation
 
 import com.vinayakgupta3112.movieapp.movieList.domain.model.Movie
 

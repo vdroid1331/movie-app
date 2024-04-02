@@ -1,4 +1,4 @@
-package com.vinayakgupta3112.movieapp.movieList.util.components
+package com.vinayakgupta3112.movieapp.movieList.details.presentation
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -48,22 +48,22 @@ import com.vinayakgupta3112.movieapp.R
 import com.vinayakgupta3112.movieapp.movieList.data.remote.MovieApi.Companion.IMAGE_BASE_URL
 import com.vinayakgupta3112.movieapp.movieList.domain.model.Movie
 import com.vinayakgupta3112.movieapp.movieList.presentation.MainUiState
-import com.vinayakgupta3112.movieapp.movieList.presentation.MainUiEvents
 import com.vinayakgupta3112.movieapp.movieList.util.Constants
-import com.vinayakgupta3112.movieapp.movieList.util.RatingBar
 import com.vinayakgupta3112.movieapp.movieList.util.Route
+import com.vinayakgupta3112.movieapp.movieList.util.components.RatingBar
+import com.vinayakgupta3112.movieapp.movieList.util.components.genresProvider
 import com.vinayakgupta3112.movieapp.movieList.util.getAverageColor
 import com.vinayakgupta3112.movieapp.ui.theme.Radius
 import com.vinayakgupta3112.movieapp.ui.theme.RadiusContainer
 import com.vinayakgupta3112.movieapp.ui.theme.font
 
 @Composable
-fun MediaItem(
+fun SearchMediaItem(
     media: Movie,
     navController: NavController,
     mainUiState: MainUiState,
     modifier: Modifier = Modifier,
-    onEvent: (MainUiEvents) -> Unit
+    onEvent: (SearchUiEvents) -> Unit
 ) {
 
     val imageUrl = "${IMAGE_BASE_URL}${media.poster_path}"
@@ -104,6 +104,7 @@ fun MediaItem(
                     )
                 )
                 .clickable {
+                    onEvent(SearchUiEvents.OnSearchedItemClick(media))
                     navController.navigate(
                         "${Route.MEDIA_DETAILS_SCREEN}?id=${media.id}&type=${media.media_type}&category=${media.category}"
                     )

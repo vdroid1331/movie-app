@@ -43,7 +43,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import com.vinayakgupta3112.movieapp.R
 import com.vinayakgupta3112.movieapp.movieList.presentation.MainUiState
-import com.vinayakgupta3112.movieapp.movieList.presentation.components.MainUiEvents
+import com.vinayakgupta3112.movieapp.movieList.presentation.MainUiEvents
 import com.vinayakgupta3112.movieapp.movieList.util.Constants
 import com.vinayakgupta3112.movieapp.movieList.util.Constants.recommendedListScreen
 import com.vinayakgupta3112.movieapp.movieList.util.Constants.topRatedAllListScreen

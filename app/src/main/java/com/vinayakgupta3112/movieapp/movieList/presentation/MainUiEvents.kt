@@ -1,4 +1,4 @@
-package com.vinayakgupta3112.movieapp.movieList.presentation.components
+package com.vinayakgupta3112.movieapp.movieList.presentation
 
 sealed class MainUiEvents {
     data class Refresh(val type: String) : MainUiEvents()

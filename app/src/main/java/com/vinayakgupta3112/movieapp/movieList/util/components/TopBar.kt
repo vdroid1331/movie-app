@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.vinayakgupta3112.movieapp.R
-import com.vinayakgupta3112.movieapp.movieList.presentation.SearchScreenState
+import com.vinayakgupta3112.movieapp.movieList.details.presentation.SearchScreenState
 import com.vinayakgupta3112.movieapp.movieList.util.Route
 import com.vinayakgupta3112.movieapp.ui.theme.BigRadius
 
