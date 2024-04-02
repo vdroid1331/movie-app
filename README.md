@@ -1,4 +1,5 @@
-![4](https://github.com/vdroid1331/movie-app/assets/65962958/cc38cd40-b80d-44d9-8bfa-482af2f2860c)# The Movies App
+## The Movies App
+
 The Movies App, is a dynamic application designed with cutting-edge technologies, including Jetpack Compose and Kotlin. This project follows to clean code principles, thanks to the clarity and maintainability they bring. The application is built with the Model-View-ViewModel (MVVM) design pattern, which promotes a stable and scalable codebase. Additionally, Dagger Hilt is used for efficient dependency injection, which improves modularity and testability.
 
 ### About The App
